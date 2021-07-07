@@ -7,20 +7,27 @@ type EnhancedCanvasContext = CanvasRenderingContext2D & {
 
 type Coords = { x: number, y: number };
 
+type GridCell = {
+  tl: Coords
+  tr: Coords
+  bl: Coords
+  br: Coords
+  gridCoords: Coords
+  tileHeight: number
+  draw: (context: EnhancedCanvasContext) => void
+  centeredGridCoords: () => Coords
+}
+
 type Entity = {
   gridCoords: Coords // The location on the board of the entity
-  draw: (context: EnhancedCanvasContext) => void
+  draw: (context: EnhancedCanvasContext, cell?: GridCell) => void
 };
 
-type SquadMember = Entity & {
-  drawCoords: Coords // The EXACT x,y on canvas of where it will be drawn
-  playerSize: number // radius of the circle for now
-}
+type SquadMember = Entity;
 
 type GridSide = "left" | "right" | "top" | "bottom";
 
-type Wall = {
-  gridCoords: Coords,
+type Wall = Entity & {
   side: GridSide
 }
 

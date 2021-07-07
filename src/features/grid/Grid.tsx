@@ -10,33 +10,41 @@ export default function Grid() {
 
   const levelNumber = 1;
 
-  const { squad, rows, cols } = levelDefinitions[levelNumber];
+  const { squad, rows, cols, walls } = levelDefinitions[levelNumber];
 
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   const tileHeight = 80;
-
   const canvasWidth = cols * tileHeight;
   const canvasHeight = rows * tileHeight;
 
   const drawGrid = useCallback((sContext: EnhancedCanvasContext) => {
-    for (let x = 0, cellX = 1; x < canvasWidth; x += tileHeight, cellX++) {
-      for (let y = 0, cellY = 1; y < canvasHeight; y += tileHeight, cellY++) {
-        const cell = makeCell({ x, y }, { x: cellX, y: cellY }, tileHeight);
+    for (let x = 1; x <= cols; x++) {
+      for (let y = 1; y <= rows; y++) {
+        const cell = makeCell({ x, y }, tileHeight);
+
+        console.log(x, y)
+
         cell.draw(sContext);
 
         squad.filter(appearsOnGridTile(cell.gridCoords)).forEach(squadMember => {
-          squadMember.drawCoords = cell.centeredGridCoords();
-          squadMember.playerSize = (tileHeight * 0.65) / 2;
-          squadMember.draw(sContext);
+          squadMember.draw(sContext, cell);
         });
+
+        walls.filter(appearsOnGridTile(cell.gridCoords)).forEach(wall => {
+          // wall
+        })
       }
     }
   }, [canvasWidth, canvasHeight, tileHeight]);
 
   useEffect(() => {
     if (canvasRef.current)
-      drawGrid(enhanceContext(canvasRef.current.getContext('2d')!));
+      drawGrid(
+        enhanceContext(
+          canvasRef.current.getContext('2d')!
+        )
+      );
   }, [drawGrid]);
 
   return (

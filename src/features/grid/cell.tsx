@@ -1,9 +1,13 @@
-export const makeCell = ({ x, y }: Coords, gridCoords: Coords, tileHeight: number) => ({
+export const makeCell = ({ x, y }: Coords, tileHeight: number): GridCell => ({
   tl: { x, y },
   tr: { x: x + tileHeight, y },
   bl: { x, y: y + tileHeight },
   br: { x: x + tileHeight, y: y + tileHeight },
-  gridCoords,
+  gridCoords: {
+    x: (x - 1) * tileHeight,
+    y: (y - 1) * tileHeight
+  },
+  tileHeight,
 
   draw(context: EnhancedCanvasContext) {
     context.drawLine(this.tl, this.tr);

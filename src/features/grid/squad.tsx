@@ -1,10 +1,11 @@
 export const baseSquadMember: SquadMember = {
-  playerSize: 10,
-  drawCoords: { x: 0, y: 0 }, 
   gridCoords: { x: 0, y: 0 },
 
-  draw(context: EnhancedCanvasContext) {
-    context.drawCircle(this.drawCoords, this.playerSize, "#00ff00");
+  draw(context, cell) {
+    const drawCoords = cell!.centeredGridCoords();
+    const playerSize = (cell!.tileHeight * 0.65) / 2;
+
+    context.drawCircle(drawCoords, playerSize, "#00ff00");
   }
 };
 
