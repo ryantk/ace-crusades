@@ -25,6 +25,8 @@ type Wall = {
 }
 
 type LevelDefinition = {
-  squad: SquadMember[],
+  rows: number
+  cols: number
+  squad: SquadMember[]
   walls: Wall[]
 };

@@ -10,7 +10,12 @@ const walls: Wall[] = [
 
 ]
 
+const rows = 10;
+const cols = 50;
+
 const level: LevelDefinition = {
+  rows,
+  cols,
   squad,
   walls
 }
