@@ -19,19 +19,20 @@ export default function Grid() {
   const canvasHeight = rows * tileHeight;
 
   const drawGrid = useCallback((sContext: EnhancedCanvasContext) => {
+    let entities = [
+      squad,
+      walls
+    ].flat();
+
     for (let x = 1; x <= cols; x++) {
       for (let y = 1; y <= rows; y++) {
         const cell = makeCell({ x, y }, tileHeight);  
 
         cell.draw(sContext);
 
-        squad.filter(appearsOnGridTile(cell.gridCoords)).forEach(squadMember => {
-          squadMember.draw(sContext, cell);
-        });
-
-        walls.filter(appearsOnGridTile(cell.gridCoords)).forEach(wall => {
-          // wall
-        })
+        entities
+          .filter(appearsOnGridTile(cell.gridCoords))
+          .forEach(entity => entity.draw(sContext, cell));
       }
     }
   }, [canvasWidth, canvasHeight, tileHeight]);
