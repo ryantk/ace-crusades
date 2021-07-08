@@ -1,5 +1,7 @@
 import { useCallback, useEffect, useRef } from "react";
+import { useSelector } from "react-redux";
 import { useGameDimensions } from "../../app/hooks";
+import { getSelectedSquadMember } from "../selection";
 import { appearsOnGridTile, makeCell } from "./cell";
 import { enhanceContext } from "./context";
 import { levelDefinitions } from "./levels";
@@ -10,6 +12,8 @@ export default function Grid() {
 
   const levelNumber = 1;
 
+  const selectedSquadMember = useSelector(getSelectedSquadMember);
+
   const { squad, rows, cols, walls } = levelDefinitions[levelNumber];
 
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -19,24 +23,26 @@ export default function Grid() {
   const canvasHeight = rows * tileHeight;
 
   const drawGrid = useCallback((sContext: EnhancedCanvasContext) => {
+    let entities = [
+      squad,
+      walls
+    ].flat();
+
+    sContext.clear();
+    console.log("HERE")
+
     for (let x = 1; x <= cols; x++) {
       for (let y = 1; y <= rows; y++) {
-        const cell = makeCell({ x, y }, tileHeight);
-
-        console.log(x, y)
+        const cell = makeCell({ x, y }, tileHeight);  
 
         cell.draw(sContext);
 
-        squad.filter(appearsOnGridTile(cell.gridCoords)).forEach(squadMember => {
-          squadMember.draw(sContext, cell);
-        });
-
-        walls.filter(appearsOnGridTile(cell.gridCoords)).forEach(wall => {
-          // wall
-        })
+        entities
+          .filter(appearsOnGridTile(cell.gridCoords))
+          .forEach(entity => entity.draw(sContext, cell));
       }
     }
-  }, [canvasWidth, canvasHeight, tileHeight]);
+  }, [cols, rows, tileHeight, selectedSquadMember]);
 
   useEffect(() => {
     if (canvasRef.current)
@@ -48,7 +54,7 @@ export default function Grid() {
   }, [drawGrid]);
 
   return (
-    <div id="viewport" style={{ height: screenHeight, width: "100%", padding: 20 }}>
+    <div id="viewport" style={{ height: screenHeight, width: "100%" }}>
       <canvas ref={canvasRef} width={canvasWidth} height={canvasHeight} style={{  }} />
     </div>
   );
