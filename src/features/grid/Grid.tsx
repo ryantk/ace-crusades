@@ -21,9 +21,7 @@ export default function Grid() {
   const drawGrid = useCallback((sContext: EnhancedCanvasContext) => {
     for (let x = 1; x <= cols; x++) {
       for (let y = 1; y <= rows; y++) {
-        const cell = makeCell({ x, y }, tileHeight);
-
-        console.log(x, y)
+        const cell = makeCell({ x, y }, tileHeight);  
 
         cell.draw(sContext);
 
