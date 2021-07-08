@@ -47,7 +47,7 @@ export default function Grid() {
   }, [drawGrid]);
 
   return (
-    <div id="viewport" style={{ height: screenHeight, width: "100%", padding: 20 }}>
+    <div id="viewport" style={{ height: screenHeight, width: "100%" }}>
       <canvas ref={canvasRef} width={canvasWidth} height={canvasHeight} style={{  }} />
     </div>
   );
