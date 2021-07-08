@@ -6,6 +6,7 @@ type LineCustomisation = {
 }
 
 type EnhancedCanvasContext = CanvasRenderingContext2D & {
+  clear: () => void
   drawLine: (from: Coords, to: Coords, options?: LineCustomisation) => void
   drawCircle: (coords: Coords, radius: number, options?: LineCustomisation) => void
 };
@@ -28,7 +29,10 @@ type Entity = {
   draw: (context: EnhancedCanvasContext, cell: GridCell) => void
 };
 
-type SquadMember = Entity;
+type SquadMember = Entity & {
+  number: number
+  name: string
+};
 
 type GridSide = "left" | "right" | "top" | "bottom";
 

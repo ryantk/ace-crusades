@@ -1,6 +1,10 @@
 export const enhanceContext = (context: CanvasRenderingContext2D): EnhancedCanvasContext => ({
   ...context,
 
+  clear() {
+    context.clearRect(0, 0, context.canvas.height, context.canvas.width);
+  },
+
   drawCircle(coords, radius, { color, thickness } = {}) {
     context.fillStyle = color || "#000000";
     context.lineWidth = thickness || 1;

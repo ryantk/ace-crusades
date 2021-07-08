@@ -2,9 +2,9 @@ import { makeSquadMemberAt } from "../squad";
 import { makeWallAt } from "../walls";
 
 const squad = [
-  makeSquadMemberAt({ x: 1, y: 1 }),
-  makeSquadMemberAt({ x: 1, y: 2 }),
-  makeSquadMemberAt({ x: 1, y: 3 })
+  makeSquadMemberAt({ x: 1, y: 1 }, 1, "Commander Cuthbert"),
+  makeSquadMemberAt({ x: 1, y: 2 }, 2, "Marine Ken"),
+  makeSquadMemberAt({ x: 1, y: 3 }, 3, "General Jess")
 ];
 
 const walls: Wall[] = [
