@@ -1,0 +1,32 @@
+#hud {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  height: 100vh;
+  width: 100vw;
+}
+
+#topHalf {
+  display: flex;
+  flex-direction: row;
+
+  height: 630px;
+}
+
+#rightPanel {
+  display: flex;
+  flex-direction: column;
+
+  width: 600px;
+  height: 630px;
+  background: #5b5b5b;
+}
+
+#toolbar {
+  display: flex;
+  flex-direction: row;
+
+  height: 100px;
+  background: #a0a0a0;
+}

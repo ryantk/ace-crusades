@@ -1,5 +1,5 @@
-import { makeSquadMemberAt } from "../squad";
-import { makeWallAt } from "../walls";
+import { makeSquadMemberAt } from "../../entities/squad";
+import { makeWallAt } from "../../entities/walls";
 
 const squad = [
   makeSquadMemberAt({ x: 1, y: 1 }, 1, "Commander Cuthbert"),

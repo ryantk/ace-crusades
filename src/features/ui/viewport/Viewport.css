@@ -1,0 +1,60 @@
+
+/* TODO: dont hardcode values */
+#viewport {
+  overflow: hidden;
+  width: 600px;
+}
+
+#controls {
+  background: transparent;
+}
+
+.panPanel {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  background: #5b5b5b;
+}
+
+.panPanel button {
+  width: 30px;
+  height: 20px;
+}
+
+#panLeft {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 30px;
+  height: 600px;
+}
+
+#panUp {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  height: 30px;
+  width: 600px;
+}
+
+#panRight {
+  position: absolute;
+  top: 0;
+  left: 600px;
+
+  width: 30px;
+  height: 630px;
+}
+
+#panDown {
+  position: absolute;
+  bottom: 0;
+  top: 600px;
+
+  height: 30px;
+  width: 600px;
+}

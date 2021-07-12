@@ -1,14 +1,9 @@
-import React from 'react';
-import './App.css';
-
-import Grid from './features/grid/Grid';
-import PlayerStatus from './features/LeftSidebar';
+import Hud from './features/ui/Hud';
 
 function App() {
   return (
     <div className="App">
-      <PlayerStatus />
-      <Grid />
+      <Hud />
     </div>
   );
 }

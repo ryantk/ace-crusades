@@ -1,15 +1,12 @@
 import { useCallback, useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
-import { useGameDimensions } from "../../app/hooks";
 import { getSelectedSquadMember } from "../selection";
-import { appearsOnGridTile, makeCell } from "./cell";
-import { enhanceContext } from "./context";
-import { levelDefinitions } from "./levels";
+import { appearsOnGridTile, makeCell } from "../entities/cell";
+import { enhanceContext } from "../grid/context";
+import { levelDefinitions } from "../config/levels";
 
 
-export default function Grid() {
-  const { screenHeight } = useGameDimensions();
-
+export default function GameCanvas() {
   const levelNumber = 1;
 
   const selectedSquadMember = useSelector(getSelectedSquadMember);
@@ -29,12 +26,10 @@ export default function Grid() {
     ].flat();
 
     sContext.clear();
-    console.log("HERE")
 
     for (let x = 1; x <= cols; x++) {
       for (let y = 1; y <= rows; y++) {
-        const cell = makeCell({ x, y }, tileHeight);  
-
+        const cell = makeCell({ x, y }, tileHeight);
         cell.draw(sContext);
 
         entities
@@ -54,8 +49,6 @@ export default function Grid() {
   }, [drawGrid]);
 
   return (
-    <div id="viewport" style={{ height: screenHeight, width: "100%" }}>
-      <canvas ref={canvasRef} width={canvasWidth} height={canvasHeight} style={{  }} />
-    </div>
+    <canvas ref={canvasRef} width={canvasWidth} height={canvasHeight} />
   );
 }

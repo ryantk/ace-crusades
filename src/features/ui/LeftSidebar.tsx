@@ -1,8 +1,8 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { levelDefinitions } from './grid/levels';
+import { levelDefinitions } from '../config/levels';
 import "./LeftSidebar.css";
-import { getSelectedSquadMember, selectSquadMember } from './selection';
+import { getSelectedSquadMember, selectSquadMember } from '../selection';
 
 export default function LeftSidebar() {
   const dispatch = useDispatch();
@@ -19,10 +19,10 @@ export default function LeftSidebar() {
 
   return (
     <div id="leftSidebar">
-      {squad.map((squadMember, i) => 
-        <div 
-          className={`playerIcon ${selectedSquadMember === i+1 ? 'selected' : ''}`} 
-          key={i} 
+      {squad.map((squadMember, i) =>
+        <div
+          className={`playerIcon ${selectedSquadMember === i+1 ? 'selected' : ''}`}
+          key={i}
           onClick={handleSquadMemberSelect(i)}
         >
           <span className="playerName">{squadMember.name}</span>
